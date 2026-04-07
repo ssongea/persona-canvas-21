@@ -85,7 +85,7 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative pl-6 border-l-2 border-border space-y-8">
+            <div className="relative pl-10 border-l-2 border-border space-y-8">
               {timeline.map((item, i) => (
                 <div key={i} className="relative">
                   <div className="absolute -left-[calc(0.375rem+1.5px)] top-1.5 w-3 h-3 rounded-full bg-primary" />
