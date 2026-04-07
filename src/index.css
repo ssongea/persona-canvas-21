@@ -34,6 +34,9 @@
 
     --radius: 0.75rem;
 
+    --surface: 0 0% 98%;
+    --surface-foreground: 0 0% 6%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -42,9 +45,6 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217 91% 53%;
-
-    --surface: 0 0% 98%;
-    --surface-foreground: 0 0% 6%;
   }
 
   .dark {
@@ -72,9 +72,12 @@
     --destructive: 0 62% 31%;
     --destructive-foreground: 0 0% 95%;
 
-    --border: 0 0% 100% / 0.08;
+    --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 217 91% 53%;
+
+    --surface: 0 0% 8%;
+    --surface-foreground: 0 0% 95%;
 
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 95%;
@@ -84,15 +87,12 @@
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 12%;
     --sidebar-ring: 217 91% 53%;
-
-    --surface: 0 0% 8%;
-    --surface-foreground: 0 0% 95%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-300;
   }
 
   html {

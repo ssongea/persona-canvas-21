@@ -41,7 +41,7 @@ export default function Projects({ onSelect }: Props) {
             <button
               key={c}
               onClick={() => setActive(c)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-[44px] ${
                 active === c
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-muted-foreground hover:text-foreground"
@@ -64,11 +64,11 @@ export default function Projects({ onSelect }: Props) {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35, delay: i * 0.08 }}
                 onClick={() => onSelect(p)}
-                className="group text-left rounded-xl border border-border bg-card overflow-hidden hover:shadow-lg transition-shadow"
+                className="group text-left rounded-xl border border-border bg-card overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 {/* Cover */}
-                <div className="aspect-[16/9] bg-gradient-to-br from-muted to-secondary overflow-hidden flex items-center justify-center">
-                  <span className="text-5xl font-bold text-muted-foreground/30 group-hover:scale-105 transition-transform duration-300">
+                <div className={`aspect-[16/9] bg-gradient-to-br ${p.coverGradient} overflow-hidden flex items-center justify-center`}>
+                  <span className="text-4xl md:text-5xl font-bold text-white/20 group-hover:scale-105 transition-transform duration-500">
                     {p.title.charAt(0)}
                   </span>
                 </div>
@@ -76,13 +76,16 @@ export default function Projects({ onSelect }: Props) {
                   <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">{p.description}</p>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{p.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="font-mono-label text-muted-foreground">{p.role}</span>
-                    <span className="text-border">|</span>
+                    {p.category.map((cat) => (
+                      <span key={cat} className="font-mono-label text-muted-foreground bg-secondary px-2 py-0.5 rounded">
+                        {cat}
+                      </span>
+                    ))}
                     <span className="font-mono-label text-muted-foreground">{p.duration}</span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
                     자세히 보기 <ArrowUpRight size={14} />
                   </span>
                 </div>

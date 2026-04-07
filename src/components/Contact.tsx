@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Copy, Check, ExternalLink, Download } from "lucide-react";
+import { Copy, Check, Download, Phone } from "lucide-react";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -9,7 +9,8 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
 
-  const email = "hello@example.com";
+  const email = "soyalee0530@naver.com";
+  const phone = "010-3053-7216";
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(email);
@@ -50,39 +51,37 @@ export default function Contact() {
           프로젝트 협업이나 채용 관련 문의를 환영합니다.
         </motion.p>
 
-        {/* Email */}
+        {/* Contact info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.15 }}
-          className="flex items-center justify-center gap-3 mb-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
         >
-          <span className="text-foreground font-medium">{email}</span>
-          <button onClick={copyEmail} className="p-2 rounded-lg hover:bg-secondary text-muted-foreground transition-colors">
-            {copied ? <Check size={16} className="text-primary" /> : <Copy size={16} />}
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="text-foreground font-medium">{email}</span>
+            <button onClick={copyEmail} className="p-2 rounded-lg hover:bg-secondary text-muted-foreground transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+              {copied ? <Check size={16} className="text-primary" /> : <Copy size={16} />}
+            </button>
+          </div>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Phone size={16} />
+            <span className="text-foreground font-medium">{phone}</span>
+          </div>
         </motion.div>
 
-        {/* Links */}
+        {/* Resume */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2 }}
-          className="flex justify-center gap-4 mb-12"
+          className="mb-12"
         >
           <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
-          >
-            LinkedIn <ExternalLink size={14} />
-          </a>
-          <a
             href="#"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors min-h-[44px]"
           >
-            이력서 다운로드 <Download size={14} />
+            이력서 다운로드 (PDF) <Download size={14} />
           </a>
         </motion.div>
 
@@ -102,7 +101,7 @@ export default function Contact() {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition min-h-[44px]"
               />
             </div>
             <div>
@@ -112,12 +111,12 @@ export default function Contact() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition min-h-[44px]"
               />
             </div>
           </div>
           <div>
-            <label className="font-mono-label text-muted-foreground mb-1.5 block">메시지</label>
+            <label className="font-mono-label text-muted-foreground mb-1.5 block">문의 내용</label>
             <textarea
               required
               rows={5}
@@ -128,7 +127,7 @@ export default function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full py-3.5 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+            className="w-full py-3.5 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity min-h-[44px]"
           >
             {sent ? "✓ 전송 완료" : "보내기"}
           </button>
