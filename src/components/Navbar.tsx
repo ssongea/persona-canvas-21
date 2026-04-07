@@ -70,13 +70,12 @@ export default function Navbar() {
           SY.
         </button>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
             <button
               key={l.href}
               onClick={() => scrollTo(l.href)}
-              className={`text-sm transition-colors ${
+              className={`text-sm transition-colors min-h-[44px] flex items-center ${
                 activeSection === l.href.slice(1)
                   ? "text-primary font-medium"
                   : "text-muted-foreground hover:text-foreground"
@@ -87,25 +86,23 @@ export default function Navbar() {
           ))}
           <button
             onClick={toggleDark}
-            className="p-2 rounded-lg hover:bg-secondary transition-colors text-muted-foreground"
+            className="p-2 rounded-lg hover:bg-secondary transition-colors text-muted-foreground min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Toggle theme"
           >
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
 
-        {/* Mobile toggle */}
         <div className="flex md:hidden items-center gap-2">
-          <button onClick={toggleDark} className="p-2 text-muted-foreground">
+          <button onClick={toggleDark} className="p-2 text-muted-foreground min-h-[44px] min-w-[44px] flex items-center justify-center">
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-foreground">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-foreground min-h-[44px] min-w-[44px] flex items-center justify-center">
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -119,7 +116,7 @@ export default function Navbar() {
                 <button
                   key={l.href}
                   onClick={() => scrollTo(l.href)}
-                  className="text-left text-base text-foreground py-2"
+                  className="text-left text-base text-foreground py-2 min-h-[44px]"
                 >
                   {l.label}
                 </button>

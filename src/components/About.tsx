@@ -1,38 +1,41 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const timeline = [
-  { company: "회사명 A", role: "서비스 기획자", period: "2022.03 – 2023.08" },
-  { company: "회사명 B", role: "UX 기획자", period: "2023.09 – 현재" },
+  {
+    company: "㈜위즈블 / 기획팀",
+    role: "서비스기획, 앱기획 (과장)",
+    period: "2023.03 – 2025.12",
+  },
+  {
+    company: "㈜위즈블 / 기획팀",
+    role: "경영기획, 사업기획 (프리랜서)",
+    period: "2021.09 – 2023.02",
+  },
+  {
+    company: "㈜한국리서치 / 마케팅조사 사업6부",
+    role: "사회조사·CS조사 기획 및 데이터 분석 (대리)",
+    period: "2017.04 – 2021.08",
+  },
+  {
+    company: "㈜포커스컴퍼니 / CS컨설팅부",
+    role: "CS조사 연구 & 통계 분석 (사원)",
+    period: "2015.03 – 2017.03",
+  },
 ];
 
 const skills = [
-  "서비스 기획", "UX 리서치", "IA 설계", "기능정의서",
-  "Figma", "데이터 분석", "애자일", "화면정의서", "프로토타이핑",
+  "서비스 기획", "UX 기획", "IA 설계", "기능정의서 작성", "Figma",
+  "사용자 리서치", "SPSS·SAS 데이터 분석", "FGD·IDI 정성조사",
+  "QA 테스트", "바이브코딩(BASE44)", "AI 툴 활용", "애자일 기획",
 ];
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-};
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  return (
-    <motion.h2
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5 }}
-      className="text-3xl md:text-4xl font-bold text-foreground mb-4"
-    >
-      {children}
-    </motion.h2>
-  );
-}
+const certifications = [
+  "가톨릭대학교 심리학과 졸업 (2015.02)",
+  "사회조사분석사 2급 (2014)",
+  "MOS 2007 MASTER (2014)",
+  "한국사능력검정 1급 (2014)",
+];
 
 export default function About() {
   const ref = useRef(null);
@@ -48,16 +51,31 @@ export default function About() {
         >
           About
         </motion.p>
-        <SectionHeading>소개</SectionHeading>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+        >
+          소개
+        </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 mt-12">
           {/* Bio */}
-          <motion.div {...fadeUp} animate={inView ? fadeUp.animate : fadeUp.initial}>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-              사용자 중심의 서비스 기획을 통해 비즈니스 가치를 만들어내는 기획자입니다.
-              데이터 기반의 문제 정의부터 IA 설계, 기능정의서 작성, 사용성 테스트까지
-              서비스 기획 전 과정을 경험하였습니다. 다양한 직군과의 원활한 협업을 통해
-              사용자 경험을 개선하고 비즈니스 목표를 달성합니다.
+              지난 10년간 리서치와 서비스 기획, 두 가지 역량을 균형 있게 쌓아왔습니다.
+              6년의 조사 연구 경험으로 N=2,000명 이상의 데이터 속에서 사용자의 진짜 니즈를
+              발굴하는 눈을 길렀고, 4년의 스타트업 기획 경험으로 블록체인 지갑부터 글로벌
+              스트리밍 플랫폼까지 프로덕트의 전 생애주기를 직접 경험했습니다.
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-base md:text-lg mt-4">
+              최근에는 BASE44, Perplexity, NotebookLM 등 AI 툴을 적극 활용하여
+              작동하는 프로토타입을 직접 구현하며 개발팀과의 협업 효율을 높이고 있습니다.
             </p>
           </motion.div>
 
@@ -71,8 +89,8 @@ export default function About() {
               {timeline.map((item, i) => (
                 <div key={i} className="relative">
                   <div className="absolute -left-[calc(0.375rem+1.5px)] top-1.5 w-3 h-3 rounded-full bg-primary" />
-                  <h3 className="font-semibold text-foreground">{item.company}</h3>
-                  <p className="text-sm text-muted-foreground">{item.role}</p>
+                  <h3 className="font-semibold text-foreground text-sm">{item.company}</h3>
+                  <p className="text-sm text-muted-foreground mt-0.5">{item.role}</p>
                   <p className="font-mono-label text-muted-foreground mt-1">{item.period}</p>
                 </div>
               ))}
@@ -108,9 +126,10 @@ export default function About() {
           className="mt-12 pt-8 border-t border-border"
         >
           <h3 className="font-mono-label text-muted-foreground mb-4">Education & Certifications</h3>
-          <div className="grid sm:grid-cols-2 gap-4 text-sm text-muted-foreground">
-            <p>OO대학교 — OO학과 졸업 (20XX)</p>
-            <p>SQLD / Google UX Design Certificate</p>
+          <div className="grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
+            {certifications.map((c) => (
+              <p key={c}>{c}</p>
+            ))}
           </div>
         </motion.div>
       </div>
