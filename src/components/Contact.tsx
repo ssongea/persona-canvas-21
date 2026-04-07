@@ -1,0 +1,139 @@
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Copy, Check, ExternalLink, Download } from "lucide-react";
+
+export default function Contact() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [copied, setCopied] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [sent, setSent] = useState(false);
+
+  const email = "hello@example.com";
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+    setForm({ name: "", email: "", message: "" });
+    setTimeout(() => setSent(false), 3000);
+  };
+
+  return (
+    <section id="contact" className="py-24 md:py-32">
+      <div className="max-w-2xl mx-auto px-6 text-center" ref={ref}>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          className="font-mono-label text-primary mb-3"
+        >
+          Contact
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          className="text-3xl md:text-4xl font-bold text-foreground mb-6"
+        >
+          연락하기
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.1 }}
+          className="text-muted-foreground mb-10"
+        >
+          프로젝트 협업이나 채용 관련 문의를 환영합니다.
+        </motion.p>
+
+        {/* Email */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.15 }}
+          className="flex items-center justify-center gap-3 mb-6"
+        >
+          <span className="text-foreground font-medium">{email}</span>
+          <button onClick={copyEmail} className="p-2 rounded-lg hover:bg-secondary text-muted-foreground transition-colors">
+            {copied ? <Check size={16} className="text-primary" /> : <Copy size={16} />}
+          </button>
+        </motion.div>
+
+        {/* Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center gap-4 mb-12"
+        >
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+          >
+            LinkedIn <ExternalLink size={14} />
+          </a>
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors"
+          >
+            이력서 다운로드 <Download size={14} />
+          </a>
+        </motion.div>
+
+        {/* Form */}
+        <motion.form
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.25 }}
+          className="text-left space-y-4"
+        >
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label className="font-mono-label text-muted-foreground mb-1.5 block">이름</label>
+              <input
+                type="text"
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+              />
+            </div>
+            <div>
+              <label className="font-mono-label text-muted-foreground mb-1.5 block">이메일</label>
+              <input
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="font-mono-label text-muted-foreground mb-1.5 block">메시지</label>
+            <textarea
+              required
+              rows={5}
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition resize-none"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3.5 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+          >
+            {sent ? "✓ 전송 완료" : "보내기"}
+          </button>
+        </motion.form>
+      </div>
+    </section>
+  );
+}
