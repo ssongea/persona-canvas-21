@@ -89,7 +89,7 @@ export default function About() {
               {timeline.map((item, i) => (
                 <div key={i} className="relative">
                   <div className="absolute -left-[calc(0.375rem+1.5px)] top-1.5 w-3 h-3 rounded-full bg-primary" />
-                  <div className="ml-6">
+                  <div className="ml-8">
                     <h3 className="font-semibold text-foreground text-sm">{item.company}</h3>
                     <p className="text-sm text-muted-foreground mt-0.5">{item.role}</p>
                     <p className="font-mono-label text-muted-foreground mt-1">{item.period}</p>
