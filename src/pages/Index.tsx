@@ -11,6 +11,14 @@ import type { Project } from "@/data/projects";
 
 export default function Index() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const handleProjectSelect = (project: Project, openLightbox?: boolean) => {
+    setSelectedProject(project);
+    if (openLightbox && project.gallery.length > 0) {
+      setLightboxIndex(0);
+    }
+  };
 
   return (
     <>
@@ -18,12 +26,18 @@ export default function Index() {
       <main>
         <Hero />
         <About />
-        <Projects onSelect={setSelectedProject} />
+        <Projects onSelect={handleProjectSelect} />
         <Contact />
       </main>
       <Footer />
       <BackToTop />
-      <ProjectDetail project={selectedProject} onClose={() => setSelectedProject(null)} />
-    </>
-  );
+      <ProjectDetail 
+        project={selectedProject} 
+        onClose={() => {
+          setSelectedProject(null);
+          setLightboxIndex(null);
+        }}
+        initialLightboxIndex={lightboxIndex}
+      />
+    </>  );
 }

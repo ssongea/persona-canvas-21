@@ -5,7 +5,7 @@ import { projects, categories } from "@/data/projects";
 import type { Project } from "@/data/projects";
 
 interface Props {
-  onSelect: (project: Project) => void;
+  onSelect: (project: Project, openLightbox?: boolean) => void;
 }
 
 export default function Projects({ onSelect }: Props) {
@@ -67,7 +67,7 @@ export default function Projects({ onSelect }: Props) {
                 className="group text-left rounded-xl border border-border bg-card overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 {/* Cover */}
-                <div className="aspect-[16/9] overflow-hidden">
+                <div className="aspect-[16/9] overflow-hidden cursor-pointer" onClick={() => onSelect(p, true)}>
                   {p.image ? (
                     <img
                       src={p.image}
@@ -83,7 +83,7 @@ export default function Projects({ onSelect }: Props) {
                   )}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors cursor-pointer" onClick={() => onSelect(p)}>
                     {p.title}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{p.description}</p>
@@ -95,7 +95,7 @@ export default function Projects({ onSelect }: Props) {
                     ))}
                     <span className="font-mono-label text-foreground">{p.duration}</span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all cursor-pointer" onClick={() => onSelect(p)}>
                     자세히 보기 <ArrowUpRight size={14} />
                   </span>
                 </div>

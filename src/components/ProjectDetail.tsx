@@ -1,11 +1,13 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { X, CheckCircle2, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Project } from "@/data/projects";
 
 interface Props {
   project: Project | null;
   onClose: () => void;
+  initialLightboxIndex?: number | null;
 }
 
 function Lightbox({
@@ -18,9 +20,30 @@ function Lightbox({
   onClose: () => void;
 }) {
   const [current, setCurrent] = useState(index);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const prev = useCallback(() => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1)), [images.length]);
   const next = useCallback(() => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1)), [images.length]);
+
+  // 모바일 터치 스와이프 처리
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe) next();
+    if (isRightSwipe) prev();
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -32,15 +55,15 @@ function Lightbox({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose, prev, next]);
 
-  return (
+  const lightboxContent = (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center"
-      onClick={onClose}
+      className="fixed inset-0 z-[300] bg-black/95 flex items-center justify-center"
+      onClick={(e) => { e.preventDefault(); e.stopPropagation(); onClose(); }}
     >
-      <button onClick={onClose} className="absolute top-4 right-4 p-2 text-white/70 hover:text-white z-10">
+      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); onClose(); }} type="button" className="absolute top-4 right-4 p-2 text-white/70 hover:text-white z-50 cursor-pointer">
         <X size={24} />
       </button>
       <button
@@ -50,7 +73,12 @@ function Lightbox({
         <ChevronLeft size={28} />
       </button>
       <div onClick={(e) => e.stopPropagation()} className="max-w-4xl w-full mx-8">
-        <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-muted to-secondary flex items-center justify-center">
+        <div
+          className="aspect-[4/3] rounded-xl bg-gradient-to-br from-muted to-secondary flex items-center justify-center"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {images[current].url ? (
             <img src={images[current].url} alt={images[current].label} className="max-w-full max-h-full object-contain" />
           ) : (
@@ -69,17 +97,27 @@ function Lightbox({
       </button>
     </motion.div>
   );
+
+  return createPortal(lightboxContent, document.body);
 }
 
-export default function ProjectDetail({ project, onClose }: Props) {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+export default function ProjectDetail({ project, onClose, initialLightboxIndex }: Props) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(initialLightboxIndex || null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && lightboxIndex === null) onClose();
+      if (e.key === "Escape") {
+        if (lightboxIndex !== null) {
+          setLightboxIndex(null);
+        } else {
+          onClose();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
-    if (project) document.body.style.overflow = "hidden";
+    if (project) {
+      document.body.style.overflow = lightboxIndex !== null ? "hidden" : "auto";
+    }
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
@@ -94,7 +132,7 @@ export default function ProjectDetail({ project, onClose }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-sm overflow-y-auto"
-          onClick={onClose}
+          onClick={lightboxIndex === null ? onClose : undefined}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
