@@ -33,7 +33,7 @@ export const projects: Project[] = [
       "반반차·오전/오후 반차 등 다양한 근무 유형별 휴가 차감 로직 및 잔여 연차 자동 계산 공식 수립",
       "휴직 기간별 급여 지급율 자동 연동 — 인사팀·재무팀 간 업무 정합성 확보",
       "조직도 기반 참조·합의·결재 라인 동적 UI 설계 (전자결재 워크플로우)",
-      "엑셀 대량 업로드 기능 기획으로 실무자 운영 리소스 절감",
+      "반복적으로 사용되는 UI 요소를 컴포넌트 단위로 정의하여 일관성 확보",
     ],
     process: [
       { step: "경쟁사 분석", description: "6개 HR 솔루션 기능 비교" },
@@ -46,8 +46,8 @@ export const projects: Project[] = [
       { url: "/projects/hr/compare_1.png", label: "HR 시스템 주요 기능 비교 분석" },
       { url: "/projects/hr/compare_2.png", label: "HR 솔루션 핵심 기능 정의" },
       { url: "/projects/hr/compare_3.png", label: "경쟁사 분석 — 시프티" },
-      { url: "/projects/hr/wireframe_1.png", label: "화면 기획서 — 표지" },
       { url: "/projects/hr/wireframe_2.png", label: "화면 기획서 — 구조 설계" },
+      { url: "/projects/hr/HR UI.png", label: "UI 공통 컴포넌트 설계" },
       { url: "/projects/hr/wireframe_4.png", label: "화면 기획서 — 상세 화면" },
       { url: "/projects/hr/figma1.png", label: "Figma — 교육 관리 화면" },
       { url: "/projects/hr/figma2.png", label: "Figma — 휴직 정보 등록" },
@@ -78,7 +78,7 @@ export const projects: Project[] = [
       "사용자 예약 플로우 설계 — 홈→병원상세→예약하기→예약확인→완료→내역",
       "병원 관리 플로우 설계 — 등록→스케줄설정→예약현황→신규예약→알림",
       "RTL(아랍어) UI 구조 및 한국어·영어·아랍어 3개국어 전환 UX 설계",
-      "바이브코딩으로 실제 작동하는 예약 화면 프로토타입 직접 구현",
+      "AI 바이브코딩으로 실제 작동하는 예약 화면 프로토타입 직접 구현",
       "두바이 현지 클라이언트 시연 — 시차·언어 장벽 없이 Agile 피드백 수렴",
     ],
     process: [
@@ -172,6 +172,7 @@ export const projects: Project[] = [
     process: [
       { step: "BM 설계", description: "Watch-to-Earn 수익 모델" },
       { step: "핵심 기능", description: "라이브·VOD·포인트 로직" },
+      { step: "기능 및 정책 설계", description: "기능정의, 정책기획" },
       { step: "다국어 구조", description: "한국어·영어 자동 전환" },
       { step: "QA", description: "기능 검증" },
       { step: "스토어 출시", description: "Google Play 배포" },
@@ -195,12 +196,12 @@ export const projects: Project[] = [
     id: "public-research",
     title: "공공기관·민간 소비자 조사 — 6년 리서치 경험",
     category: ["리서치·분석"],
-    description: "대규모 정량·정성 조사 설계, SPSS 통계 분석, 정책 타당성 보고서 — 50건 이상 프로젝트 PM 수행",
+    description: "대규모 정량·정성 조사 설계 및 조사진행, SPSS 통계 분석, 데이터 분석 및 보고서 작성 — 70건 이상 프로젝트 PM 수행",
     role: "조사 기획 · 데이터 분석 · PM",
     duration: "2015 – 2021",
-    tags: ["SPSS", "FGD", "IDI", "데이터 분석", "PM"],
+    tags: ["SPSS", "FGD", "IDI", "UT", "데이터 분석"],
     background:
-      "6년간 공공기관·대학·민간 대상 정량·정성 조사 수행. 자동차·렌탈·금융·공공기관 등 10개 이상 업종에서 50건 이상의 프로젝트 전 과정 독립 수행, 대규모 데이터 속에서 사용자의 진짜 니즈를 발굴하고 정책 의사결정을 지원.",
+      "6년간 공공기관·대학·민간 대상 정량·정성 조사 수행. 자동차·렌탈·금융·공공기관 등 10개 이상 업종에서 70건 이상의 프로젝트 전 과정 독립 수행, 대규모 데이터 속에서 사용자의 진짜 니즈를 발굴하고 정책 의사결정을 지원.",
     myRole: [
       "조사 목적에 부합하는 표본 설계 및 설문 로직 구조화",
       "SPSS 활용 빈도·교차·회귀 분석으로 비즈니스·정책 인사이트 도출",
@@ -229,4 +230,4 @@ export const projects: Project[] = [
   },
 ];
 
-export const categories = ["전체", "UX/앱기획", "리서치·분석", "글로벌 서비스", "바이브코딩"];
+export const categories = ["전체", "통계분석", "리서치", "소비자조사", "UIUX리서치"];
