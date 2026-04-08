@@ -12,6 +12,7 @@ export interface Project {
   gallery: { url: string; label: string }[];
   outcomes: { value: string; label: string }[];
   coverGradient: string;
+  image?: string;
   tags?: string[];
 }
 
@@ -22,7 +23,7 @@ export const projects: Project[] = [
     category: ["UX/앱기획"],
     description: "경쟁사 리서치부터 Figma 화면 설계까지 — 근태·휴가·전자결재·급여를 통합하는 SaaS HR 플랫폼",
     role: "서비스 기획 (경쟁사 분석 → PPT 스토리보드 → Figma 상세 설계)",
-    duration: "2023 – 2024",
+    duration: "2024 – 2025",
     tags: ["Figma", "SaaS", "B2B", "UX 기획"],
     background:
       "기업 내 반복되는 인사 행정 업무의 비효율을 해결하기 위해 SaaS 형태의 통합 HR 솔루션 개발. 특히 노코드툴을 활용하여 각 기업별로 개발지식이 없는 담당자가 기업맞춤형 메뉴 구조 변경 가능. 서비스 기획에 앞서 시프티·플렉스·원티드스페이스·에버타임·워크업·유스트라HR 6개 경쟁사를 분석하여 출퇴근 관리·휴가·전자결재·급여 정산 등 HR 솔루션이 갖춰야 할 핵심 기능 도출.",
@@ -59,6 +60,7 @@ export const projects: Project[] = [
       { value: "0건", label: "수기 업무 오류 (프로세스 표준화)" },
     ],
     coverGradient: "from-[#1a1a2e] to-[#16213e]",
+    image: "/projects/hr/compare_1.png",
   },
   {
     id: "kbio",
@@ -105,6 +107,7 @@ export const projects: Project[] = [
       { value: "즉시 시연", label: "바이브코딩 프로토타입 현지 클라이언트 시연" },
     ],
     coverGradient: "from-[#1b4332] to-[#081c15]",
+    image: "/projects/kbio/plan_2.png",
   },
   {
     id: "wizbl-wallet",
@@ -146,6 +149,7 @@ export const projects: Project[] = [
       { value: "전주기", label: "기획→런칭 전 과정 경험" },
     ],
     coverGradient: "from-[#0f3460] to-[#533483]",
+    image: "/projects/wallet/WALLET4.png",
   },
   {
     id: "estv",
@@ -185,6 +189,7 @@ export const projects: Project[] = [
       { value: "지속가능", label: "Watch-to-Earn 수익 모델 구현" },
     ],
     coverGradient: "from-[#1a0533] to-[#3d0066]",
+    image: "/projects/estv/flow.png",
   },
   {
     id: "public-research",

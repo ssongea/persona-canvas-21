@@ -31,7 +31,7 @@ export default function Contact() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          className="font-mono-label text-primary mb-3"
+          className="font-heading text-primary mb-3"
         >
           Contact
         </motion.p>
@@ -78,7 +78,8 @@ export default function Contact() {
           className="mb-12"
         >
           <a
-            href="#"
+            href="/resume.pdf"
+            download="이소영_이력서.pdf"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-secondary transition-colors min-h-[44px]"
           >
             이력서 다운로드 (PDF) <Download size={14} />

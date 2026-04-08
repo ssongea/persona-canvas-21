@@ -4,38 +4,38 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 6%;
+    --background: 40 10% 98%;
+    --foreground: 210 18% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 6%;
+    --card-foreground: 210 18% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 6%;
+    --popover-foreground: 210 18% 13%;
 
-    --primary: 217 91% 53%;
+    --primary: 10 90% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 6%;
+    --secondary: 35 40% 96%;
+    --secondary-foreground: 210 18% 13%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 35 40% 96%;
+    --muted-foreground: 210 18% 45%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 6%;
+    --accent: 35 40% 96%;
+    --accent-foreground: 210 18% 13%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 10 85% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 217 91% 53%;
+    --border: 220 12% 88%;
+    --input: 220 12% 92%;
+    --ring: 10 90% 55%;
 
     --radius: 0.75rem;
 
-    --surface: 0 0% 98%;
-    --surface-foreground: 0 0% 6%;
+    --surface: 40 10% 98%;
+    --surface-foreground: 210 18% 13%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -109,6 +109,12 @@
   .font-mono-label {
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     @apply text-xs tracking-widest uppercase;
+  }
+
+  .font-heading {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .dot-grid-bg {

@@ -23,7 +23,7 @@ export default function Projects({ onSelect }: Props) {
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          className="font-mono-label text-primary mb-3"
+          className="font-heading text-primary mb-3"
         >
           Projects
         </motion.p>
@@ -67,10 +67,20 @@ export default function Projects({ onSelect }: Props) {
                 className="group text-left rounded-xl border border-border bg-card overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 {/* Cover */}
-                <div className={`aspect-[16/9] bg-gradient-to-br ${p.coverGradient} overflow-hidden flex items-center justify-center`}>
-                  <span className="text-4xl md:text-5xl font-bold text-white/20 group-hover:scale-105 transition-transform duration-500">
-                    {p.title.charAt(0)}
-                  </span>
+                <div className="aspect-[16/9] overflow-hidden">
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${p.coverGradient} flex items-center justify-center`}>
+                      <span className="text-4xl md:text-5xl font-bold text-white/20 group-hover:scale-105 transition-transform duration-500">
+                        {p.title.charAt(0)}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
@@ -79,11 +89,11 @@ export default function Projects({ onSelect }: Props) {
                   <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{p.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {p.category.map((cat) => (
-                      <span key={cat} className="font-mono-label text-muted-foreground bg-secondary px-2 py-0.5 rounded">
+                      <span key={cat} className="font-mono-label text-foreground bg-secondary px-2 py-0.5 rounded">
                         {cat}
                       </span>
                     ))}
-                    <span className="font-mono-label text-muted-foreground">{p.duration}</span>
+                    <span className="font-mono-label text-foreground">{p.duration}</span>
                   </div>
                   <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
                     자세히 보기 <ArrowUpRight size={14} />

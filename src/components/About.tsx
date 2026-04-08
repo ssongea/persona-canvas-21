@@ -4,7 +4,7 @@ import { useRef } from "react";
 const timeline = [
   {
     company: "㈜위즈블 / 기획팀",
-    role: "서비스기획, 앱기획 (과장)",
+    role: "서비스기획, 웹앱기획 (과장)",
     period: "2023.03 – 2025.12",
   },
   {
@@ -13,7 +13,7 @@ const timeline = [
     period: "2021.09 – 2023.02",
   },
   {
-    company: "㈜한국리서치 / 마케팅조사 사업6부",
+    company: "㈜한국리서치 / People Insight팀",
     role: "사회조사·CS조사 기획 및 데이터 분석 (대리)",
     period: "2017.04 – 2021.08",
   },
@@ -25,16 +25,19 @@ const timeline = [
 ];
 
 const skills = [
-  "서비스 기획", "UX 기획", "IA 설계", "기능정의서 작성", "Figma",
-  "사용자 리서치", "SPSS·SAS 데이터 분석", "FGD·IDI 정성조사",
-  "QA 테스트", "바이브코딩(BASE44)", "AI 툴 활용", "애자일 기획",
+  "서비스 기획", "UI·UX 기획", "IA 설계", "기능정의서 작성", "Figma", "PPT·EXCEL",
+  "사용자 리서치", "SPSS 데이터 분석", "FGD·IDI 정성조사",
+  "QA 테스트", "바이브코딩", "AI 툴 활용", "애자일 기획",
 ];
 
 const certifications = [
-  "가톨릭대학교 심리학과 졸업 (2015.02)",
   "사회조사분석사 2급 (2014)",
   "MOS 2007 MASTER (2014)",
   "한국사능력검정 1급 (2014)",
+];
+
+const education = [
+  "가톨릭대학교 심리학과 졸업 (2015.02)",
 ];
 
 export default function About() {
@@ -47,7 +50,7 @@ export default function About() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          className="font-mono-label text-primary mb-3"
+          className="font-heading text-primary mb-3"
         >
           About
         </motion.p>
@@ -68,14 +71,10 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-              지난 10년간 리서치와 서비스 기획, 두 가지 역량을 균형 있게 쌓아왔습니다.
-              6년의 조사 연구 경험으로 N=2,000명 이상의 데이터 속에서 사용자의 진짜 니즈를
-              발굴하는 눈을 길렀고, 4년의 스타트업 기획 경험으로 블록체인 지갑부터 글로벌
-              스트리밍 플랫폼까지 프로덕트의 전 생애주기를 직접 경험했습니다.
+              지난 10년간 리서치와 서비스 기획, 두 가지 역량을 균형 있게 쌓아왔습니다. 리서치 에이전시에서 6년의 기간 동안 약 70건에 해당되는 다양한 프로젝트를 진행했습니다. 이 경험을 바탕으로 데이터 속에서 사용자의 진짜 니즈를 발굴하는 눈을 길렀고, 4년의 스타트업 기획 경험으로 블록체인 지갑부터 글로벌 스트리밍 플랫폼까지 프로덕트의 전 생애주기를 직접 경험했습니다.
             </p>
             <p className="text-muted-foreground leading-relaxed text-base md:text-lg mt-4">
-              최근에는 BASE44, Perplexity, NotebookLM 등 AI 툴을 적극 활용하여
-              작동하는 프로토타입을 직접 구현하며 개발팀과의 협업 효율을 높이고 있습니다.
+              최근에는 Cluade, Antigravity 등 AI툴을 적극 활용하여 작동하는 프로토타입을 직접 구현하며 개발팀과의 협업 효율을 높이고 있습니다.
             </p>
           </motion.div>
 
@@ -107,7 +106,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16"
         >
-          <h3 className="font-mono-label text-muted-foreground mb-4">Skills</h3>
+          <h3 className="font-heading text-primary mb-4 pb-3 border-b-2 border-primary">Skills</h3>
           <div className="flex flex-wrap gap-2">
             {skills.map((s) => (
               <span
@@ -127,7 +126,22 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 pt-8 border-t border-border"
         >
-          <h3 className="font-mono-label text-muted-foreground mb-4">Education & Certifications</h3>
+          <h3 className="font-heading text-primary mb-4 pb-3 border-b-2 border-primary">Education</h3>
+          <div className="grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
+            {education.map((e) => (
+              <p key={e}>{e}</p>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Certifications */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-8"
+        >
+          <h3 className="font-heading text-primary mb-4 pb-3 border-b-2 border-primary">Certifications</h3>
           <div className="grid sm:grid-cols-2 gap-3 text-sm text-muted-foreground">
             {certifications.map((c) => (
               <p key={c}>{c}</p>
